@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/vdubois/spring-cloud-sample-config-server-repository.git
+        bootstrap: true
+  application:
+    name: config
