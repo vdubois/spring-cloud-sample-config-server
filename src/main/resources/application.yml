@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    config:
+      server:
+        bootstrap: true
+        git:
+          uri: https://github.com/vdubois/spring-cloud-sample-config-server-repository.git
+        default-application-name: default-application-name
+eureka:
+  client.serviceUrl.defaultZone: http://localhost:8080/eureka
+  instance:
+    app-group-name: microservices
+    hostname: localhost
+    appname: config-server
