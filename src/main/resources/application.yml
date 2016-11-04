@@ -12,3 +12,5 @@ eureka:
     app-group-name: microservices
     hostname: localhost
     appname: config-server
+server:
+  port: 8888
