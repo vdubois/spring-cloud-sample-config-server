@@ -4,6 +4,7 @@ spring:
       server:
         git:
           uri: https://github.com/vdubois/spring-cloud-sample-config-server-repository.git
+          timeout: 10
         bootstrap: true
   application:
     name: config
