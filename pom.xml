@@ -6,7 +6,7 @@
 	<groupId>io.github.vdubois</groupId>
 	<artifactId>spring-cloud-sample-config-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>spring-cloud-sample-config-server</name>
 	<description>Config server for microservice sample</description>
@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.4.4.RELEASE</version>
+		<version>1.5.6.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -29,6 +29,16 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-config-server</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+<!--
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-config-monitor</artifactId>
@@ -45,6 +55,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
 		</dependency>
+-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -57,7 +68,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Camden.SR4</version>
+				<version>Dalston.RELEASE</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -76,6 +87,19 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.github.davidmoten</groupId>
+				<artifactId>aws-maven-plugin</artifactId>
+				<version>0.2.10</version>
+				<configuration>
+					<awsAccessKey>${env.AWS_ACCESS_KEY}</awsAccessKey>
+					<awsSecretAccessKey>${env.AWS_SECRET_ACCESS_KEY}</awsSecretAccessKey>
+					<artifact>${project.build.directory}/${project.build.finalName}.war</artifact>
+					<applicationName>config-server</applicationName>
+					<environmentName>ConfigServer-env</environmentName>
+					<region>us-east-2</region>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
